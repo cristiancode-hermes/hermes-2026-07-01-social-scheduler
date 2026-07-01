@@ -1,0 +1,16 @@
+{
+  "name": "social-scheduler",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "cd apps/api && npm run start:dev",
+    "dev:web": "cd apps/web && npm run start",
+    "build": "npm run build:api && npm run build:web",
+    "build:api": "cd apps/api && npm run build",
+    "build:web": "cd apps/web && npm run build",
+    "test": "cd apps/api && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
