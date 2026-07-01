@@ -8,3 +8,8 @@ coverage/
 *.db
 *.sqlite
 .turbo/
+*.tsbuildinfo
+apps/web/.gitignore
+apps/web/.prettierrc
+apps/web/.vscode/
+apps/web/public/
