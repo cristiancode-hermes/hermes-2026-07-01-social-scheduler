@@ -90,6 +90,18 @@
             }
           },
           "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "progress": false
+            }
+          }
         }
       }
     }
