@@ -21,213 +21,213 @@ const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   standalone: true,
   imports: [DatePipe, BadgeComponent, ModalComponent, RouterLink],
   template: `
-    <div class="p-4 lg:p-6">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h1 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Calendar</h1>
-          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Manage your scheduled posts</p>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="flex bg-neutral-100 dark:bg-neutral-800 rounded-lg p-0.5">
-            <button
-              (click)="view.set('month')"
-              class="px-3 py-1.5 text-sm font-medium rounded-md transition-all"
-              [class.bg-white]="view() === 'month'"
-              [class.dark:bg-neutral-700]="view() === 'month'"
-              [class.shadow-sm]="view() === 'month'"
-              [class.text-primary-600]="view() === 'month'"
-              [class.dark:text-primary-400]="view() === 'month'"
-              [class.text-neutral-600]="view() !== 'month'"
-              [class.dark:text-neutral-400]="view() !== 'month'"
-            >
-              Month
-            </button>
-            <button
-              (click)="view.set('week')"
-              class="px-3 py-1.5 text-sm font-medium rounded-md transition-all"
-              [class.bg-white]="view() === 'week'"
-              [class.dark:bg-neutral-700]="view() === 'week'"
-              [class.shadow-sm]="view() === 'week'"
-              [class.text-primary-600]="view() === 'week'"
-              [class.dark:text-primary-400]="view() === 'week'"
-              [class.text-neutral-600]="view() !== 'week'"
-              [class.dark:text-neutral-400]="view() !== 'week'"
-            >
-              Week
-            </button>
-          </div>
-        </div>
-      </div>
+<div class="p-4 lg:p-6">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+<div>
+<h1 class="heading-1 text-text-primary dark:text-text-primary-dark">Calendar</h1>
+<p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-1">Manage your scheduled posts</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex bg-surface dark:bg-neutral-800 rounded-btn p-0.5">
+<button
+(click)="view.set('month')"
+class="px-3 py-1.5 text-sm font-medium rounded-md transition-all"
+[class.bg-surface-card]="view() === 'month'"
+[class.dark:bg-neutral-700]="view() === 'month'"
+[class.]="view() === 'month'"
+[class.text-accent]="view() === 'month'"
+[class.dark:text-accent]="view() === 'month'"
+[class.text-neutral-600]="view() !== 'month'"
+[class.dark:text-text-secondary-dark]="view() !== 'month'"
+>
+Month
+</button>
+<button
+(click)="view.set('week')"
+class="px-3 py-1.5 text-sm font-medium rounded-md transition-all"
+[class.bg-surface-card]="view() === 'week'"
+[class.dark:bg-neutral-700]="view() === 'week'"
+[class.]="view() === 'week'"
+[class.text-accent]="view() === 'week'"
+[class.dark:text-accent]="view() === 'week'"
+[class.text-neutral-600]="view() !== 'week'"
+[class.dark:text-text-secondary-dark]="view() !== 'week'"
+>
+Week
+</button>
+</div>
+</div>
+</div>
 
-      <!-- Navigation -->
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <button
-            (click)="previousPeriod()"
-            class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors"
-          >
-            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-          <button
-            (click)="goToToday()"
-            class="px-3 py-1.5 text-sm font-medium rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
-          >
-            Today
-          </button>
-          <button
-            (click)="nextPeriod()"
-            class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors"
-          >
-            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-        </div>
-        <h2 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{{ headerText() }}</h2>
-        <div class="w-24"></div>
-      </div>
+<!-- Navigation -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<button
+(click)="previousPeriod()"
+class="p-2 rounded-btn hover:bg-surface dark:hover:bg-neutral-800 text-neutral-600 dark:text-text-secondary-dark transition-colors"
+>
+<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+</svg>
+</button>
+<button
+(click)="goToToday()"
+class="px-3 py-1.5 text-sm font-medium rounded-btn bg-surface dark:bg-neutral-800 text-text-primary dark:text-text-primary-dark hover:bg-border dark:hover:bg-neutral-700 transition-colors"
+>
+Today
+</button>
+<button
+(click)="nextPeriod()"
+class="p-2 rounded-btn hover:bg-surface dark:hover:bg-neutral-800 text-neutral-600 dark:text-text-secondary-dark transition-colors"
+>
+<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+</svg>
+</button>
+</div>
+<h2 class="heading-2 text-text-primary dark:text-text-primary-dark">{{ headerText() }}</h2>
+<div class="w-24"></div>
+</div>
 
-      @if (postService.loading() && postService.calendarPosts().length === 0) {
-        <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-card p-4">
-          <div class="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden">
-            @for (i of [1,2,3,4,5,6,7]; track i) {
-              <div class="bg-neutral-100 dark:bg-neutral-800 p-3 min-h-[120px]">
-                <div class="h-3 w-8 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse mb-2"></div>
-              </div>
-            }
-            @for (i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35]; track i) {
-              <div class="bg-white dark:bg-neutral-900 p-3 min-h-[120px]">
-                <div class="h-3 w-6 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse"></div>
-              </div>
-            }
-          </div>
-        </div>
-      } @else if (postService.error() && postService.calendarPosts().length === 0) {
-        <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-card p-8 text-center">
-          <p class="text-danger-600 dark:text-danger-400">{{ postService.error() }}</p>
-          <button (click)="loadPosts()" class="mt-3 text-sm text-primary-600 hover:underline">Try again</button>
-        </div>
-      } @else {
-        @if (view() === 'month') {
-          <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-card overflow-hidden">
-            <!-- Weekday headers -->
-            <div class="grid grid-cols-7 border-b border-neutral-200 dark:border-neutral-800">
-              @for (day of weekdays; track day) {
-                <div class="p-3 text-center text-xs font-semibold text-neutral-500 uppercase tracking-wider">{{ day }}</div>
-              }
-            </div>
-            <!-- Calendar grid -->
-            <div class="grid grid-cols-7">
-              @for (day of monthDays(); track day.date.toISOString()) {
-                <div
-                  class="min-h-[120px] p-2 border-b border-r border-neutral-100 dark:border-neutral-800 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
-                  [class.bg-neutral-50]="!day.isCurrentMonth"
-                  [class.dark:bg-neutral-900]="!day.isCurrentMonth"
-                  [class.bg-primary-50]="day.isToday"
-                  [class.dark:bg-primary-900/10]="day.isToday"
-                  (click)="onDateClick(day.date)"
-                >
-                  <div class="flex items-center justify-between mb-1">
-                    <span
-                      class="text-sm font-medium"
-                      [class.text-neutral-400]="!day.isCurrentMonth"
-                      [class.text-neutral-900]="day.isCurrentMonth && !day.isToday"
-                      [class.dark:text-neutral-100]="day.isCurrentMonth && !day.isToday"
-                      [class.text-primary-600]="day.isToday"
-                      [class.dark:text-primary-400]="day.isToday"
-                    >
-                      {{ day.date.getDate() }}
-                    </span>
-                  </div>
-                  <div class="space-y-1">
-                    @for (post of day.posts.slice(0, 3); track post.id) {
-                      <div
-                        class="text-xs px-1.5 py-0.5 rounded truncate cursor-pointer font-medium"
-                        [class]="postStatusBadge(post.status)"
-                        (click)="$event.stopPropagation(); onPostClick(post)"
-                      >
-                        {{ post.title }}
-                      </div>
-                    }
-                    @if (day.posts.length > 3) {
-                      <span class="text-xs text-neutral-400 px-1">+{{ day.posts.length - 3 }} more</span>
-                    }
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-        } @else {
-          <!-- Weekly view -->
-          <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-card overflow-hidden">
-            <div class="grid grid-cols-7 border-b border-neutral-200 dark:border-neutral-800">
-              @for (day of weekDays(); track day.date.toISOString()) {
-                <div
-                  class="p-3 text-center border-r border-neutral-100 dark:border-neutral-800 last:border-r-0"
-                  [class.bg-primary-50]="day.isToday"
-                  [class.dark:bg-primary-900/10]="day.isToday"
-                >
-                  <div class="text-xs font-semibold text-neutral-500 uppercase">{{ weekdays[$index] }}</div>
-                  <div
-                    class="text-lg font-bold mt-1"
-                    [class.text-primary-600]="day.isToday"
-                    [class.text-neutral-900]="!day.isToday"
-                    [class.dark:text-neutral-100]="!day.isToday"
-                    [class.dark:text-primary-400]="day.isToday"
-                  >
-                    {{ day.date.getDate() }}
-                  </div>
-                </div>
-              }
-            </div>
-            <div class="grid grid-cols-7">
-              @for (day of weekDays(); track day.date.toISOString()) {
-                <div
-                  class="min-h-[400px] p-2 border-r border-neutral-100 dark:border-neutral-800 last:border-r-0 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
-                  (click)="onDateClick(day.date)"
-                >
-                  @for (post of day.posts; track post.id) {
-                    <div
-                      class="text-xs px-2 py-1.5 rounded mb-1 cursor-pointer font-medium truncate"
-                      [class]="postStatusBadge(post.status)"
-                      (click)="$event.stopPropagation(); onPostClick(post)"
-                    >
-                      {{ post.title }}
-                    </div>
-                  }
-                </div>
-              }
-            </div>
-          </div>
-        }
-      }
+@if (postService.loading() && postService.calendarPosts().length === 0) {
+<div class="bg-surface-card dark:bg-neutral-900 rounded-card -card p-4">
+<div class="grid grid-cols-7 gap-px bg-border dark:bg-neutral-800 rounded-btn overflow-hidden">
+@for (i of [1,2,3,4,5,6,7]; track i) {
+<div class="bg-surface dark:bg-neutral-800 p-3 min-h-[120px]">
+<div class="h-3 w-8 bg-border dark:bg-neutral-700 rounded animate-pulse mb-2"></div>
+</div>
+}
+@for (i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35]; track i) {
+<div class="bg-surface-card dark:bg-neutral-900 p-3 min-h-[120px]">
+<div class="h-3 w-6 bg-border dark:bg-neutral-700 rounded animate-pulse"></div>
+</div>
+}
+</div>
+</div>
+} @else if (postService.error() && postService.calendarPosts().length === 0) {
+<div class="bg-surface-card dark:bg-neutral-900 rounded-card -card p-8 text-center">
+<p class="text-red-600 dark:text-red-400">{{ postService.error() }}</p>
+<button (click)="loadPosts()" class="mt-3 text-sm text-accent hover:underline">Try again</button>
+</div>
+} @else {
+@if (view() === 'month') {
+<div class="bg-surface-card dark:bg-neutral-900 rounded-card -card overflow-hidden">
+<!-- Weekday headers -->
+<div class="grid grid-cols-7 border-b border-border dark:border-neutral-800">
+@for (day of weekdays; track day) {
+<div class="p-3 text-center text-xs font-semibold text-text-secondary uppercase tracking-wider">{{ day }}</div>
+}
+</div>
+<!-- Calendar grid -->
+<div class="grid grid-cols-7">
+@for (day of monthDays(); track day.date.toISOString()) {
+<div
+class="min-h-[120px] p-2 border-b border-r border-neutral-100 dark:border-neutral-800 cursor-pointer hover:bg-surface dark:hover:bg-neutral-800/50 transition-colors"
+[class.bg-surface]="!day.isCurrentMonth"
+[class.dark:bg-neutral-900]="!day.isCurrentMonth"
+[class.bg-accent-light]="day.isToday"
+[class.dark:bg-accent-light]="day.isToday"
+(click)="onDateClick(day.date)"
+>
+<div class="flex items-center justify-between mb-1">
+<span
+class="text-sm font-medium"
+[class.text-text-secondary-dark]="!day.isCurrentMonth"
+[class.text-text-primary]="day.isCurrentMonth && !day.isToday"
+[class.dark:text-text-primary-dark]="day.isCurrentMonth && !day.isToday"
+[class.text-accent]="day.isToday"
+[class.dark:text-accent]="day.isToday"
+>
+{{ day.date.getDate() }}
+</span>
+</div>
+<div class="space-y-1">
+@for (post of day.posts.slice(0, 3); track post.id) {
+<div
+class="text-xs px-1.5 py-0.5 rounded truncate cursor-pointer font-medium"
+[class]="postStatusBadge(post.status)"
+(click)="$event.stopPropagation(); onPostClick(post)"
+>
+{{ post.title }}
+</div>
+}
+@if (day.posts.length > 3) {
+<span class="text-xs text-text-secondary-dark px-1">+{{ day.posts.length - 3 }} more</span>
+}
+</div>
+</div>
+}
+</div>
+</div>
+} @else {
+<!-- Weekly view -->
+<div class="bg-surface-card dark:bg-neutral-900 rounded-card -card overflow-hidden">
+<div class="grid grid-cols-7 border-b border-border dark:border-neutral-800">
+@for (day of weekDays(); track day.date.toISOString()) {
+<div
+class="p-3 text-center border-r border-neutral-100 dark:border-neutral-800 last:border-r-0"
+[class.bg-accent-light]="day.isToday"
+[class.dark:bg-accent-light]="day.isToday"
+>
+<div class="text-xs font-semibold text-text-secondary uppercase">{{ weekdays[$index] }}</div>
+<div
+class="text-lg font-bold mt-1"
+[class.text-accent]="day.isToday"
+[class.text-text-primary]="!day.isToday"
+[class.dark:text-text-primary-dark]="!day.isToday"
+[class.dark:text-accent]="day.isToday"
+>
+{{ day.date.getDate() }}
+</div>
+</div>
+}
+</div>
+<div class="grid grid-cols-7">
+@for (day of weekDays(); track day.date.toISOString()) {
+<div
+class="min-h-[400px] p-2 border-r border-neutral-100 dark:border-neutral-800 last:border-r-0 cursor-pointer hover:bg-surface dark:hover:bg-neutral-800/50 transition-colors"
+(click)="onDateClick(day.date)"
+>
+@for (post of day.posts; track post.id) {
+<div
+class="text-xs px-2 py-1.5 rounded mb-1 cursor-pointer font-medium truncate"
+[class]="postStatusBadge(post.status)"
+(click)="$event.stopPropagation(); onPostClick(post)"
+>
+{{ post.title }}
+</div>
+}
+</div>
+}
+</div>
+</div>
+}
+}
 
-      <!-- Post Detail Modal -->
-      <app-modal [isOpen]="selectedPost() !== null" (close)="selectedPost.set(null)" title="Post Details" size="lg">
-        @if (selectedPost(); as post) {
-          <div class="space-y-4">
-            <div class="flex items-center gap-2">
-              <app-badge [variant]="post.status">{{ STATUS_LABELS[post.status] }}</app-badge>
-              @if (post.platformProfile) {
-                <app-badge [variant]="post.platformProfile.platform">{{ PLATFORM_LABELS[post.platformProfile.platform] }}</app-badge>
-              }
-            </div>
-            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">{{ post.title }}</h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400 whitespace-pre-wrap">{{ post.content }}</p>
-            @if (post.scheduledAt) {
-              <p class="text-sm text-neutral-500">Scheduled: {{ post.scheduledAt | date:'MMM d, yyyy h:mm a' }}</p>
-            }
-            <div class="flex gap-3 pt-2">
-              <a [routerLink]="['/posts', post.id]" class="text-sm text-primary-600 hover:underline">View details</a>
-              <a [routerLink]="['/posts', post.id, 'edit']" class="text-sm text-primary-600 hover:underline">Edit</a>
-            </div>
-          </div>
-        }
-      </app-modal>
-    </div>
-  `,
+<!-- Post Detail Modal -->
+<app-modal [isOpen]="selectedPost() !== null" (close)="selectedPost.set(null)" title="Post Details" size="lg">
+@if (selectedPost(); as post) {
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<app-badge [variant]="post.status">{{ STATUS_LABELS[post.status] }}</app-badge>
+@if (post.platformProfile) {
+<app-badge [variant]="post.platformProfile.platform">{{ PLATFORM_LABELS[post.platformProfile.platform] }}</app-badge>
+}
+</div>
+<h3 class="heading-2 text-text-primary dark:text-text-primary-dark">{{ post.title }}</h3>
+<p class="text-sm text-neutral-600 dark:text-text-secondary-dark whitespace-pre-wrap">{{ post.content }}</p>
+@if (post.scheduledAt) {
+<p class="text-sm text-text-secondary">Scheduled: {{ post.scheduledAt | date:'MMM d, yyyy h:mm a' }}</p>
+}
+<div class="flex gap-3 pt-2">
+<a [routerLink]="['/posts', post.id]" class="text-sm text-accent hover:underline">View details</a>
+<a [routerLink]="['/posts', post.id, 'edit']" class="text-sm text-accent hover:underline">Edit</a>
+</div>
+</div>
+}
+</app-modal>
+</div>
+`,
 })
 export class CalendarPageComponent {
   protected readonly postService = inject(PostService);

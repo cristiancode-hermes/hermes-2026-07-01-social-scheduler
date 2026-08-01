@@ -5,13 +5,13 @@ import type { PostStatus, Platform } from '../models';
   selector: 'app-badge',
   standalone: true,
   template: `
-    <span
-      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-      [class]="badgeClass()"
-    >
-      <ng-content />
-    </span>
-  `,
+<span
+class="inline-flex items-center px-2.5 py-0.5 rounded-badge text-xs font-medium"
+[class]="badgeClass()"
+>
+<ng-content />
+</span>
+`,
 })
 export class BadgeComponent {
   readonly variant = input<PostStatus | Platform | string>('draft');

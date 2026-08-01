@@ -34,22 +34,22 @@ const BOTTOM_NAV_ITEMS = [
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 safe-area-bottom">
-      <div class="flex items-center justify-around h-16 px-2">
-        @for (item of navItems; track item.path) {
-          <a
-            [routerLink]="item.path"
-            routerLinkActive="text-primary-600 dark:text-primary-400"
-            class="flex flex-col items-center gap-0.5 px-3 py-1 text-neutral-500 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            [routerLinkActiveOptions]="{exact: item.path === '/dashboard'}"
-          >
-            <span [innerHTML]="item.icon"></span>
-            <span class="text-[10px] font-medium">{{ item.label }}</span>
-          </a>
-        }
-      </div>
-    </nav>
-  `,
+<nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-card dark:bg-neutral-900 border-t border-border dark:border-neutral-800 safe-area-bottom">
+<div class="flex items-center justify-around h-16 px-2">
+@for (item of navItems; track item.path) {
+<a
+[routerLink]="item.path"
+routerLinkActive="text-accent dark:text-accent"
+class="flex flex-col items-center gap-0.5 px-3 py-1 text-text-secondary dark:text-text-secondary-dark hover:text-accent dark:hover:text-accent transition-colors"
+[routerLinkActiveOptions]="{exact: item.path === '/dashboard'}"
+>
+<span [innerHTML]="item.icon"></span>
+<span class="text-[10px] font-medium">{{ item.label }}</span>
+</a>
+}
+</div>
+</nav>
+`,
 })
 export class BottomNavComponent {
   protected readonly navItems = BOTTOM_NAV_ITEMS;

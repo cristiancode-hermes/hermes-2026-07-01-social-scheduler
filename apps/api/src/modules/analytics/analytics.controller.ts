@@ -26,6 +26,15 @@ export class AnalyticsController {
     return this.analyticsService.getKpi(req.user.organizationId, days);
   }
 
+  @Get('kpis')
+  @ApiOperation({ summary: 'Dashboard KPIs (alias for frontend compat)' })
+  async getKpis(
+    @Query('days') days: number = 30,
+    @Req() req: any,
+  ) {
+    return this.analyticsService.getKpi(req.user.organizationId, days);
+  }
+
   @Get('by-platform')
   @ApiOperation({ summary: 'Posts by platform with counts' })
   async getByPlatform(

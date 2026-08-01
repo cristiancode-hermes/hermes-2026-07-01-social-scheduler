@@ -40,36 +40,36 @@ const NAV_ITEMS: NavItem[] = [
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <aside
-      class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col transition-transform duration-200"
-      [class.-translate-x-full]="!open()"
-      [class.translate-x-0]="open()"
-    >
-      <div class="h-16"></div>
-      <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        @for (item of navItems; track item.path) {
-          <a
-            [routerLink]="item.path"
-            routerLinkActive="bg-primary-50 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300"
-            [routerLinkActiveOptions]="{exact: item.path === '/dashboard'}"
-            class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors"
-            (click)="navigate.emit()"
-          >
-            <span [innerHTML]="item.icon"></span>
-            {{ item.label }}
-          </a>
-        }
-      </nav>
+<aside
+class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-surface-card dark:bg-neutral-900 border-r border-border dark:border-neutral-800 flex flex-col transition-transform duration-200"
+[class.-translate-x-full]="!open()"
+[class.translate-x-0]="open()"
+>
+<div class="h-16"></div>
+<nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+@for (item of navItems; track item.path) {
+<a
+[routerLink]="item.path"
+routerLinkActive="bg-accent-light text-accent dark:bg-accent-light dark:text-primary-300"
+[routerLinkActiveOptions]="{exact: item.path === '/dashboard'}"
+class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-btn text-neutral-600 dark:text-text-secondary-dark hover:bg-surface dark:hover:bg-neutral-800 hover:text-text-primary dark:hover:text-text-primary-dark transition-colors"
+(click)="navigate.emit()"
+>
+<span [innerHTML]="item.icon"></span>
+{{ item.label }}
+</a>
+}
+</nav>
 
-      <div class="p-4 border-t border-neutral-200 dark:border-neutral-800">
-        <div class="flex items-center gap-3 px-3 py-2">
-          <div class="text-xs text-neutral-400">
-            Social Scheduler v1.0
-          </div>
-        </div>
-      </div>
-    </aside>
-  `,
+<div class="p-4 border-t border-border dark:border-neutral-800">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="text-xs text-text-secondary-dark">
+Social Scheduler v1.0
+</div>
+</div>
+</div>
+</aside>
+`,
 })
 export class SidebarComponent {
   readonly open = input(false);
