@@ -21,12 +21,17 @@ import { PLATFORM_LABELS, STATUS_LABELS } from '../models';
 <h1 class="heading-1 text-text-primary dark:text-text-primary-dark">Posts</h1>
 <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-1">Manage your social media content</p>
 </div>
+<div class="flex items-center gap-2">
+<button (click)="exportCsv()" class="inline-flex items-center gap-2 rounded-card border border-surface-300 dark:border-neutral-700 px-4 py-2 text-sm font-medium text-text-primary dark:text-text-primary-dark hover:border-primary-500 hover:text-primary-600 transition-colors">
+⬇️ Export CSV
+</button>
 <a routerLink="/posts/new">
 <app-button variant="primary">
 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
 New Post
 </app-button>
 </a>
+</div>
 </div>
 
 <!-- Filters -->
@@ -249,6 +254,16 @@ export class PostListPageComponent {
 
   protected onFilterChange(): void {
     this.currentPage.set(1);
+  }
+
+  protected exportCsv(): void {
+    this.postService.exportCsv({
+      search: this.searchQuery() || undefined,
+      platform: (this.platformFilter() as Platform) || undefined,
+      status: (this.statusFilter() as PostStatus) || undefined,
+      dateFrom: this.dateFrom() || undefined,
+      dateTo: this.dateTo() || undefined,
+    });
   }
 
   protected goToPage(page: number): void {

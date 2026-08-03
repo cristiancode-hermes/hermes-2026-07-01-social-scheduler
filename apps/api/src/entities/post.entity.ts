@@ -53,10 +53,10 @@ export class Post {
   @Column({ length: 20, default: 'draft' })
   status: string; // draft|scheduled|published|failed
 
-  @Column({ name: 'scheduled_at', nullable: true, type: 'datetime' })
+  @Column({ name: 'scheduled_at', nullable: true, type: 'timestamp' })
   scheduledAt: Date | null;
 
-  @Column({ name: 'published_at', nullable: true, type: 'datetime' })
+  @Column({ name: 'published_at', nullable: true, type: 'timestamp' })
   publishedAt: Date | null;
 
   @Column({ name: 'character_count', default: 0 })

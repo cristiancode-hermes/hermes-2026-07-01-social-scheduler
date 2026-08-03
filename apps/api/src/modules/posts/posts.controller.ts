@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   Req,
+  Res,
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
@@ -40,6 +41,18 @@ export class PostsController {
     @Req() req: any,
   ) {
     return this.postsService.getCalendar(month, year, req.user.organizationId);
+  }
+
+  @Get('export')
+  @ApiOperation({ summary: 'Export posts as CSV' })
+  async exportCsv(@Query() query: QueryPostDto, @Req() req: any, @Res() res?: any) {
+    const { filename, csv } = await this.postsService.exportCsv(
+      query,
+      req.user.organizationId,
+    );
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(csv);
   }
 
   @Get(':id')

@@ -98,6 +98,62 @@ export class PostsService {
     };
   }
 
+  async exportCsv(query: QueryPostDto, organizationId: number) {
+    const where: any = { organizationId };
+
+    if (query.platform) {
+      where.platformProfile = { platform: query.platform };
+    }
+    if (query.status) {
+      where.status = query.status;
+    }
+    if (query.month && query.year) {
+      const startDate = new Date(query.year, query.month - 1, 1);
+      const endDate = new Date(query.year, query.month, 0, 23, 59, 59);
+      where.scheduledAt = Between(startDate, endDate);
+    }
+
+    let posts: Post[];
+    if (query.q) {
+      posts = await this.postRepository.find({
+        where: [
+          { ...where, title: Like(`%${query.q}%`) },
+          { ...where, content: Like(`%${query.q}%`) },
+        ],
+        relations: { platformProfile: true },
+        order: { createdAt: 'DESC' },
+      });
+    } else {
+      posts = await this.postRepository.find({
+        where,
+        relations: { platformProfile: true },
+        order: { createdAt: 'DESC' },
+      });
+    }
+
+    const escape = (v: unknown): string => {
+      const s = v == null ? '' : String(v);
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+
+    const header = ['title', 'content', 'platform', 'handle', 'status', 'scheduled_at', 'published_at', 'character_count'];
+    const rows = posts.map((p) => [
+      p.title,
+      p.content,
+      p.platformProfile?.platform ?? '',
+      p.platformProfile?.handle ?? '',
+      p.status,
+      p.scheduledAt ? new Date(p.scheduledAt).toISOString() : '',
+      p.publishedAt ? new Date(p.publishedAt).toISOString() : '',
+      p.characterCount,
+    ]);
+
+    return {
+      filename: `posts-${new Date().toISOString().slice(0, 10)}.csv`,
+      csv: [header, ...rows].map((r) => r.map(escape).join(',')).join('\n'),
+    };
+  }
+
   async getCalendar(month: number, year: number, organizationId: number) {
     const startDate = new Date(year, month - 1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59);

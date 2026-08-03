@@ -24,7 +24,7 @@ export class PostService {
     this.error.set(null);
 
     const params = new URLSearchParams();
-    if (filters.search) params.set('search', filters.search);
+    if (filters.search) params.set('q', filters.search);
     if (filters.platform) params.set('platform', filters.platform);
     if (filters.status) params.set('status', filters.status);
     if (filters.dateFrom) params.set('dateFrom', filters.dateFrom);
@@ -130,5 +130,28 @@ export class PostService {
         this.loading.set(false);
       },
     });
+  }
+
+  exportCsv(filters: PostFilters = {}): void {
+    const params = new URLSearchParams();
+    if (filters.search) params.set('q', filters.search);
+    if (filters.platform) params.set('platform', filters.platform);
+    if (filters.status) params.set('status', filters.status);
+
+    this.http
+      .get(`/api/posts/export?${params.toString()}`, { responseType: 'blob' })
+      .subscribe({
+        next: (blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `posts-${new Date().toISOString().slice(0, 10)}.csv`;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        },
+        error: (err) => {
+          this.error.set(err.error?.message || 'Failed to export posts');
+        },
+      });
   }
 }
