@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build:css": "node scripts/build-css.js src/styles.css",
-    "build": "node scripts/build-css.js src/styles.css && ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
